@@ -3,15 +3,16 @@
 
 {% block content %}
 <h1 class="text-md-center text-sm-left mb-5 brand-primary-color font-weight-bold">Free URL Shortner</h1>
-<form>
+<form method="post"> 
+	{% csrf_token %} 
 	<div class="form-group">
 		<label for="url">URL To Shorten</label>
-		<input type="text" class="form-control" id="url" aria-describedby="url" placeholder="https://example.com">
+		{{form.original_url}}
 	</div>
 	<div class="form-row">
 	    <div class="col-12 col-md-9 mb-4 mb-md-0">
-	      <label for="url">Alias</label>
-			<input type="text" class="form-control" id="url" aria-describedby="url" placeholder="Enter an alias..">
+	      	<label for="url">Alias</label>
+			{{form.short_url}}
 	    </div>
 	    <div class="col-12 col-md-3 align-self-end">
 	    	<button class="btn btn-primary btn-block">
@@ -21,9 +22,11 @@
 	</div>
 
 	<ul class="errors list-unstyled mt-4">
-		<li><strong>Errors</strong></li>
-		<li class="text-danger">Invalid URL</li>
-		<li class="text-danger">Invalid URL</li>
-	</div>
+		{% if form.errors %} <li><strong>Errors</strong></li> {% endif %}
+		{% if form.original_url.errors %} <li class="text-danger">{{form.original_url.errors}}</li> {% endif %}
+		{% if form.short_url.errors %} <li class="text-danger">{{form.short_url.errors}}</li> {% endif %}
+	</ul>
+
+	{{ form.non_field_errors }}
 </form>
 {% endblock content %}

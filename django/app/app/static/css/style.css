@@ -25,3 +25,8 @@ body{
 .brand-primary-color {
 	color: #1A3559;
 }
+
+.errorlist li{
+	padding: 0;
+	list-style: none;
+}
