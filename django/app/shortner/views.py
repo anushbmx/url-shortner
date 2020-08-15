@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.urls import reverse
-from shortner.forms import ShortnerForm
-from django.views.generic.edit import FormView, View
+from django.shortcuts import render
 from shortner.models import Shortner
+from shortner.forms import ShortnerForm
+from django.views.generic.edit import View
 from django.shortcuts import redirect, get_object_or_404
-from django.http import HttpResponse
 
 
 class ShortnerHome(View):
@@ -22,7 +21,12 @@ class ShortnerHome(View):
 class ShortnerDetails(View):
 	def get(self, request, short_url, *args, **kwargs):
 		shortner = get_object_or_404(Shortner, short_url=short_url, status=True)
-		return render(request, 'shortner/success.html', {'title': 'Shorterned URL', 'data': shortner, 'host': request.get_host()})
+		context = {
+			'title': 'Shorterned URL : %s' % shortner.short_url, 
+			'data': shortner, 
+			'host': request.get_host()
+		}
+		return render(request, 'shortner/success.html', context)
 
 
 class ShortnerRedirect(View):

@@ -8,7 +8,7 @@ A simple url shortner
 To run in development env:
 1. Install Docker https://www.docker.com/products/docker-desktop
 2. Make .env file in same directory as `docker-compose.yml` or edit the `.env` path in it. Refer `env_sample` file.
-3. From root directory of app execute `docker-compose up` or `docker-compose up -d` to run as deamon. Docker will pull and build the image first time and execute the containers.
+3. From the root directory of app execute `docker-compose up` or `docker-compose up -d` to run as daemon. Docker will pull and build the image first time and execute the containers.
 4. Open `http://127.0.0.1/` to see things in action.
 
 
