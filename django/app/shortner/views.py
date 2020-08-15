@@ -22,7 +22,7 @@ class ShortnerHome(View):
 class ShortnerDetails(View):
 	def get(self, request, short_url, *args, **kwargs):
 		shortner = get_object_or_404(Shortner, short_url=short_url, status=True)
-		return render(request, 'shortner/success.html', {'title': 'Shorterned URL', 'data': shortner})
+		return render(request, 'shortner/success.html', {'title': 'Shorterned URL', 'data': shortner, 'host': request.get_host()})
 
 
 class ShortnerRedirect(View):

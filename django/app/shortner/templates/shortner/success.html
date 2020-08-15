@@ -4,7 +4,7 @@
 {% block content %}
 <h1 class="text-md-center text-sm-left mb-5 brand-primary-color font-weight-bold">Success!</h1>
 <div class="border rounded p-2 px-3 mb-2">
-	<p class="mb-0">{% url 'shortner.details'  data.short_url %}</p>
+	<p class="mb-0">{{host}}{% url 'shortner.redirect'  data.short_url %}</p>
 </div>
 <p>
 	<strong>Long URL : </strong> {{data.original_url}}
