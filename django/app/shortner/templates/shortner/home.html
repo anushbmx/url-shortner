@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-<h1 class="text-md-center text-sm-left mb-4">Free URL Shortner</h1>
+<h1 class="text-md-center text-sm-left mb-5">Free URL Shortner</h1>
 <form>
 	<div class="form-group">
 		<label for="url">URL To Shorten</label>
@@ -18,6 +18,12 @@
 	    		<img width="16" height="16" class="mr-1" src="{% static 'images/sicssors.svg' %}"/> Shortern!
 	    	</button>
 	    </div>
+	</div>
+
+	<ul class="errors list-unstyled mt-4">
+		<li><strong>Errors</strong></li>
+		<li class="text-danger">Invalid URL</li>
+		<li class="text-danger">Invalid URL</li>
 	</div>
 </form>
 {% endblock content %}
