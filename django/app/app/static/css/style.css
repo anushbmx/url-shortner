@@ -21,3 +21,7 @@ body{
 .errors li {
 	margin-bottom: 0.3rem;
 }
+
+.brand-primary-color {
+	color: #1A3559;
+}
