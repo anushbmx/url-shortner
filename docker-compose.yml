@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  # Django application
+  app:
+    image: app
+    build:
+      context: ./django/
+      dockerfile: Dockerfile
+    restart: always
+    # Check django/scripts/README.md for wait-for-it.sh
+    command: ['./scripts/wait-for-it.sh', './scripts/run_app_development.sh']
+    volumes:
+      - ./django/scripts:/scripts
+      - ./django/app:/code/app
+      - ./static:/static
+      - ./media:/media
+      - ./logs:/logs
+    env_file: .env
+    environment:
+      PYTHONUNBUFFERED: 1
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.role == worker]
+    networks:
+      - webnet
+
+  # Nginx Server
+  nginx:
+    restart: always
+    image: nginx:1.15.5-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./static:/usr/share/nginx/html/static
+      - ./media:/usr/share/nginx/html/media
+    depends_on:
+      - app
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.role == worker]
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
+volumes:
+  static:

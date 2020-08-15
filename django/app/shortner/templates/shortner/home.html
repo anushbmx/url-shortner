@@ -1,0 +1,23 @@
+{% extends "shortner/shortner_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<h1 class="text-md-center text-sm-left mb-4">Free URL Shortner</h1>
+<form>
+	<div class="form-group">
+		<label for="url">URL To Shorten</label>
+		<input type="text" class="form-control" id="url" aria-describedby="url" placeholder="https://example.com">
+	</div>
+	<div class="form-row">
+	    <div class="col-12 col-md-9 mb-4 mb-md-0">
+	      <label for="url">Alias</label>
+			<input type="text" class="form-control" id="url" aria-describedby="url" placeholder="Enter an alias..">
+	    </div>
+	    <div class="col-12 col-md-3 align-self-end">
+	    	<button class="btn btn-primary btn-block">
+	    		<img width="16" height="16" class="mr-1" src="{% static 'images/sicssors.svg' %}"/> Shortern!
+	    	</button>
+	    </div>
+	</div>
+</form>
+{% endblock content %}

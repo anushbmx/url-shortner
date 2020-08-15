@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block root_content %}
+<div class="main-container h-100">
+	{% include 'commons/header.html' %}
+	{% block base_content %}
+	{% endblock base_content %}
+	{% include 'commons/footer.html' %}
+</div>
+{% endblock root_content %}
